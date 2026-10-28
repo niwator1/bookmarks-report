@@ -770,3 +770,5 @@
 
 ---
 第一周行动计划：[week1-plans](week1-plans.md)
+
+企业微信外部群机器人接入方法：[wecom-external-group-bots](wecom-external-group-bots.md)
