@@ -776,3 +776,5 @@
 建站选题参考分析（bulin 47 ai）：[site-reference-analysis](site-reference-analysis.md)
 
 免费档位下的高质量筛词流程：[keyword-screening-workflow](keyword-screening-workflow.md)
+
+当前可做候选：[current-candidates](current-candidates.md)
