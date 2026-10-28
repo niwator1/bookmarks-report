@@ -774,3 +774,5 @@
 企业微信外部群机器人接入方法：[wecom-external-group-bots](wecom-external-group-bots.md)
 
 建站选题参考分析（bulin 47 ai）：[site-reference-analysis](site-reference-analysis.md)
+
+免费档位下的高质量筛词流程：[keyword-screening-workflow](keyword-screening-workflow.md)
