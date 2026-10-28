@@ -20,6 +20,19 @@
 
 ---
 
+## 浏览器核验补记（2026-10-28）
+
+- **GoodRx 州表数字与 AmbulanceCost 重合，且参考文献点名 AmbulanceCost**（可见两条：Florida 州费用页；里程文）。大站在转载/引用专门站数据，不是另建独立费率库。来源页：[GoodRx 文章](https://www.goodrx.com/insurance/health-insurance/how-much-does-an-ambulance-cost)。
+- **旧金山城页是「核实做得好」的样板**：市政费率 + TNT $568 + 2026 Medicare 基准 + 生效日 2025-09-01 + Resource last updated 2026-06-11。差异化应做「更多像旧金山这样的核实页」，不是否认对方完全无核实。页：[SF](https://www.ambulancecost.com/ambulance-cost/ca/san-francisco)。
+- **州页自相矛盾仍在**：NY 写 “1 verified” 却下列 6 家；TN 先写尚无核实又列出多家（多为 CMS PUF）。首页地图仍有脏码 `EM`。
+- **WPR** 只有一张 51 行 BLS/ALS 表，Sources 只链 CareCredit；加州数字与 AmbulanceCost/GoodRx 那套不同。
+- **打不开正文**：CareCredit（Akamai Access Denied）、usasymbol 州排名（Cloudflare）、Google/部分 DuckDuckGo（流量验证）。
+- **误判排除**：ercost.com 是急诊室现金价（46 都会区），不是救护车价。
+- 原始页记与截图：本机 `/workspace/outputs/competitor-pages-raw.md`、`competitor-screenshots/`（未推仓库）。
+
+---
+
+
 ## 1. 相关站分类清单
 
 ### A. 专门数据 / 比价站
