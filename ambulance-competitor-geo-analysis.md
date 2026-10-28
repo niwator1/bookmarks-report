@@ -224,3 +224,11 @@
 | 无细节 | 「跑通 GEO 才发现有多爽」 | [168] https://x.com/Jiaxi_Cui/status/2110286729534173577 | 无可用方法 |
 
 **补充（非她收藏，为通用做法）**：`llms.txt` 约定（llmstxt.org）；OpenAI 区分 OAI-SearchBot（检索）与 GPTBot（训练）、Google-Extended 控制 Gemini 训练而不影响搜索；Google 垃圾内容政策（规模化内容滥用、cloaking、隐藏文本）；Bing Webmaster Tools 免费；结构化数据只标记页面可见内容。以上为通用知识，本轮未逐条抓取官方页面核对。
+
+---
+
+## 更正（2026-10-28，据 [web-geo-requirements.md](./web-geo-requirements.md) 官方核对）
+
+- Claude 的搜索爬虫是 **Claude-SearchBot**，不是 ClaudeBot（ClaudeBot 属训练类）。放行搜索类：OAI-SearchBot、PerplexityBot、Claude-SearchBot。
+- 本文推荐的 **FAQPage、Dataset 标记不再算有效的 AI 引用手段**：Google 的 FAQ 富结果自 2026-05-07 起不再显示，Dataset 只用于 Dataset Search；`llms.txt` Google 明确表示忽略，仅作可选。
+- 其余结论（直答块、核实费率、审核人署名、州法表、避免模板薄页）不变。
