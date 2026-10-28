@@ -87,6 +87,18 @@ rows=[
 ('Washington, DC','DC Fire and EMS Department (FEMS)','mileage','不分','30','per mile or fraction','上限','2026-01-01','D.C. Code §5-416','washington-dc/dc-code-5-416.html','同上',r'\(F\) \$([\d.]+), beginning January 1, 202','(F) $30, beginning January 1, 2026'),
 ('Washington, DC','DC Fire and EMS Department (FEMS)','mileage','不分','26.25','per mile or fraction','上限','2025-01-01（旧版）','D.C. Code §5-416','washington-dc/dc-code-5-416.html','同上',r'\(E\) \$([\d.]+), beginning January 1, 2025; and \(F\) \$30','(E) $26.25, beginning January 1, 2025'),
 ]
+NPI={ # 来源：NPPES 公开 API（2026-10-29 查询）；只收名称+城市+州+救护车分类均对上的
+'New York, NY':('未取得（候选：1083715460，法人为 NYC Health and Hospitals Corp，DBA "NYC FIRE DEPT-EMS AMBULANCE"，法人名与 FDNY 不一致）','https://npiregistry.cms.hhs.gov/api/?version=2.1&number=1083715460'),
+'Los Angeles, CA':('1083789564','https://npiregistry.cms.hhs.gov/api/?version=2.1&number=1083789564'),
+'Chicago, IL':('1376554592','https://npiregistry.cms.hhs.gov/api/?version=2.1&number=1376554592'),
+'Houston, TX':('1447375282','https://npiregistry.cms.hhs.gov/api/?version=2.1&number=1447375282'),
+'Phoenix, AZ':('未取得（候选：1982781571 CITY OF PHOENIX ARIZONA / DBA CITY OF PHOENIX ETS，主分类为 Paramedic 而非 Ambulance）','https://npiregistry.cms.hhs.gov/api/?version=2.1&number=1982781571'),
+'San Antonio, TX':('1053377713','https://npiregistry.cms.hhs.gov/api/?version=2.1&number=1053377713'),
+'Dallas, TX':('1861530990','https://npiregistry.cms.hhs.gov/api/?version=2.1&number=1861530990'),
+'San Diego, CA':('1043904485','https://npiregistry.cms.hhs.gov/api/?version=2.1&number=1043904485'),
+'Las Vegas, NV':('多候选（AMR=Mercy Inc 1235232562；MedicWest Ambulance Inc 有 1962439026/1265065130/1003006180 三个）','https://npiregistry.cms.hhs.gov/api/?version=2.1&number=1235232562'),
+'Washington, DC':('1992805022','https://npiregistry.cms.hhs.gov/api/?version=2.1&number=1992805022'),
+}
 out=[];stats={}
 for r in rows:
     jur,op,svc,res,amt,unit,pt,eff,ref,src,url,rx,quote=r[:13]; mode=r[13] if len(r)>13 else 'auto'; page=r[14] if len(r)>14 else 1
@@ -99,7 +111,7 @@ for r in rows:
     if url=='同上': url=prev_url
     prev_url=url
     p=os.path.join(R,src)
-    out.append(dict(jurisdiction=jur,operator=op,npi='未取得',service_type=svc,resident_type=res,amount=amt,unit=unit,price_type=pt,effective_date=eff,ordinance_ref=ref,source_url=url,fetched_at=ft(p),sha256=sha(p),evidence_tier='官方原件',check_status=cs,path_a_method=('OCR(tesseract)' if mode=='ocr' else ('HTML解析' if src.endswith('html') else 'pdfplumber')),path_a_value=a or '未抽到',path_b_quote=quote,raw_file=src))
+    out.append(dict(jurisdiction=jur,operator=op,npi=NPI[jur][0],npi_source=NPI[jur][1],service_type=svc,resident_type=res,amount=amt,unit=unit,price_type=pt,effective_date=eff,ordinance_ref=ref,source_url=url,fetched_at=ft(p),sha256=sha(p),evidence_tier='官方原件',check_status=cs,path_a_method=('OCR(tesseract)' if mode=='ocr' else ('HTML解析' if src.endswith('html') else 'pdfplumber')),path_a_value=a or '未抽到',path_b_quote=quote,raw_file=src))
     stats.setdefault(jur,[0,0]); stats[jur][0]+=1; stats[jur][1]+= cs!='两路一致'
 with open('rates.csv','w',newline='') as f:
     w=csv.DictWriter(f,fieldnames=list(out[0])); w.writeheader(); w.writerows(out)

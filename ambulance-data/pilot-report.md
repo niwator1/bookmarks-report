@@ -55,3 +55,21 @@
 ## 5. 版本记录
 - v1（2026-10-29 01:15，UTC+8）：6/10 可出页，有效比例 60%，触发 70% 阈值。
 - v2（2026-10-29，UTC+8）：补芝加哥规章 PDF、达拉斯新条例（Ord. 33564）、拉斯维加斯特许经营商名单、圣地亚哥 FY2026 收费表；9/10 可出页，有效比例 90%。
+
+## 6. v3 补充（2026-10-29）
+
+### 6.1 圣迭戈 FY2027
+- 结果：**未取得**。R-316243 规定 FY2027（2026-07-01 起）在 FY2026 基础上 +5%，但官方 FY2027 User Fee Schedule 未找到，未自行计算。
+- 查过：sandiego.gov/finance 页（目前仍只链接 FY2026 表 /sites/default/files/2025-07/fy26-user-fee-schedule.pdf）；按命名规律尝试 /sites/default/files/{2026-04…2026-10}/fy27-user-fee-schedule.pdf 等，均 404；sandiego.gov/fire/about/emergency-medical-services/transport-fees（仍是 FY25 旧表）；网页搜索 "Fiscal Year 2027 User Fee Schedule" San Diego 只命中 City Planning 的 FY2027 费表（不含救护车）。
+- 处理：rates.csv 圣迭戈 5 行保持 FY2026 值，生效日期列已注明「FY2027 金额未取得，本表可能已过期」。行数仍 56。
+
+### 6.2 NPI（NPPES 公开 API）
+- 命中 7/10 城（37/56 行）：洛杉矶 1083789564、芝加哥 1376554592、休斯敦 1447375282、圣安东尼奥 1053377713、达拉斯 1861530990、圣迭戈 1043904485（地面救护；另有空中 1619149754 不收）、华盛顿 1992805022（法人为 DC 政府，DBA DC Fire and EMS）。
+- 未取得/多候选：纽约（候选 1083715460，法人 NYC Health and Hospitals Corp，DBA "NYC FIRE DEPT-EMS AMBULANCE"）；凤凰城（候选 1982781571，DBA City of Phoenix ETS，但分类为 Paramedic 非 Ambulance）；拉斯维加斯（AMR=Mercy Inc 1235232562；MedicWest 三个 NPI，多运营商不硬选）。
+- 来源 URL 写入 npi_source 列。
+
+### 6.3 10% 抽查
+- 6 行（种子 42，覆盖 6 城），金额与生效日期 6/6 一致；单位 2 行为解读（拉斯维加斯、凤凰城）；圣迭戈 1 行可能过期。详见 spot-check.md。
+
+### 6.4 汇总比例（v3）
+- 可出页城市仍为 9/10（失败标准不变，见前文）；NPI 填充 7/10 城；抽查金额一致率 6/6；圣迭戈价格时效存疑 1/10 城。
